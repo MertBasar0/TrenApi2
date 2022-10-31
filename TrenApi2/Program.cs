@@ -1,8 +1,10 @@
-using Business.Abstract;
+ using Business.Abstract;
 using Business.Concrete;
+using Core.Abstract;
 using DataAccess;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
+using Entities.DTOs;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
 
@@ -11,7 +13,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 //Add services to the container.
 
-builder.Services.AddTransient<IRezervationDetailDal, RezervationDetailDal>();
 builder.Services.AddTransient<IRezervationDetailService, RezervationDetailManager>();
 
 

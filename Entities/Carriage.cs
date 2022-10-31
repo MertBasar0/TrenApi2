@@ -26,8 +26,15 @@ namespace Entities
 
         public int CalculateRightCapacity()
         {
-            var result = Capacity * 0.70;
-            return (int)result;
+            return Convert.ToInt32(Capacity * 0.70);
+        }
+
+
+        public int CalculateEmptySeat()
+        {
+            var empty = Convert.ToInt32(Capacity * 0.70) - Occupancy;
+            
+            return empty > 0 ? empty : 0;
         }
 
 

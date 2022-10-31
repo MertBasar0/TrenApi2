@@ -19,14 +19,13 @@ namespace TrenApi2.Controllers
 
 
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult<RezervationDetail> RezervationCheck(Mod request)
         {
             RezervationDetail result = _rezervationDetailService.RezervationCheck(request);
 
             return Ok(result);
         }
-
 
     }
 }

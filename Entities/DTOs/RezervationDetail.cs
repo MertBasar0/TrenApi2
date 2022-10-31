@@ -12,9 +12,9 @@ namespace Entities.DTOs
     public class RezervationDetail : IBaseEntity
     {
 
-        public bool RezCheck { get; set; }
+        public bool RezCheck { get; set; } = false;
 
-        public List<Detail> Details { get; set; }
+        public List<Detail> Details { get; set; } = new List<Detail>();
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Abstract;
 using DataAccess.Abstract;
 using Entities;
 using Entities.DTOs;
@@ -12,9 +13,10 @@ namespace Business.Concrete
 {
     public class RezervationDetailManager : IRezervationDetailService
     {
+
         public RezervationDetail RezervationCheck(Mod template)
         {
-            RezervationDetail _rezervationDetail = new() { RezCheck = false, Details = new List<Detail>() };
+            RezervationDetail _rezervationDetail = new();
             if (template.Train is not null && template.Train.Carriages is not null)
             {
                 if (template.Separately is false)
@@ -36,14 +38,15 @@ namespace Business.Concrete
                     {
                         if (item.CalculateRightCapacity() > item.Occupancy && unSettled > 0)
                         {
-                            var empty = item.CalculateRightCapacity() - item.Occupancy;
+                            var empty = item.CalculateEmptySeat();
                             _rezervationDetail.Details.Add(new Detail() { CarriageName = item.Name, PersonCount = empty > unSettled ? unSettled : unSettled - (unSettled - empty) } );
                             unSettled = empty > unSettled ? 0 : unSettled -= empty;
                         }
                     }
                     if(unSettled > 0)
                     {
-                        return _rezervationDetail = new() { RezCheck = false, Details = new List<Detail>() };
+                        _rezervationDetail.RezCheck = false;
+                        _rezervationDetail.Details.Clear();
                     }
                 }
             }
@@ -51,5 +54,7 @@ namespace Business.Concrete
            
             return _rezervationDetail;
         }
+
+
     }
 }
